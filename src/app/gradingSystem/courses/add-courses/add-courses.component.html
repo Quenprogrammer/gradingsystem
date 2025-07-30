@@ -1,0 +1,49 @@
+<div class="max-w-md mx-auto p-4 border rounded">
+  <h2 class="text-xl font-bold mb-4">Upload New Course</h2>
+
+  <form [formGroup]="courseForm" (ngSubmit)="submit()">
+    <div class="mb-3">
+      <label>Course Title</label>
+      <input type="text" formControlName="title" class="w-full p-2 border rounded" />
+    </div>
+
+    <div class="mb-3">
+      <label>Course Code</label>
+      <input type="text" formControlName="code" class="w-full p-2 border rounded" />
+    </div>
+
+    <div class="mb-3">
+      <label>Credit Unit</label>
+      <input type="number" formControlName="creditUnit" class="w-full p-2 border rounded" />
+    </div>
+
+    <div class="mb-3">
+      <label>Semester</label>
+      <select formControlName="semester" class="w-full p-2 border rounded">
+        <option value="First">First</option>
+        <option value="Second">Second</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label>Level</label>
+      <select formControlName="level" class="w-full p-2 border rounded">
+        <option>100L</option>
+        <option>200L</option>
+        <option>300L</option>
+        <option>400L</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label>Lecturer (Optional)</label>
+      <input type="text" formControlName="lecturer" class="w-full p-2 border rounded" />
+    </div>
+
+    <button type="submit" [disabled]="loading" class="bg-blue-600 text-white px-4 py-2 rounded">
+      {{ loading ? 'Uploading...' : 'Submit' }}
+    </button>
+
+    <p *ngIf="successMessage" class="text-green-600 mt-3">{{ successMessage }}</p>
+  </form>
+</div>

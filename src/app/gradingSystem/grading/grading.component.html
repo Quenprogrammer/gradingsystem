@@ -1,0 +1,45 @@
+<h2>University Grading System</h2>
+
+<form [formGroup]="gradingForm" (ngSubmit)="calculateGrades()">
+  <label>Student Name:</label>
+  <input formControlName="studentName" placeholder="Enter student name" />
+
+  <label>Matric Number:</label>
+  <input formControlName="matricNumber" placeholder="Enter matric number" />
+
+  <div formArrayName="courses">
+    <div *ngFor="let course of courses.controls; let i = index" [formGroupName]="i" class="course-row">
+      <h4>Course {{ i + 1 }}</h4>
+      <input formControlName="courseTitle" placeholder="Course Title" />
+      <input type="number" formControlName="creditUnit" placeholder="Credit Unit" />
+      <input type="number" formControlName="score" placeholder="Score" />
+
+      <div *ngIf="course.get('grade')?.value">
+        Grade: <strong>{{ course.get('grade')?.value }}</strong> |
+        Grade Point: <strong>{{ course.get('gradePoint')?.value }}</strong>
+      </div>
+
+      <button type="button" (click)="removeCourse(i)">Remove</button>
+    </div>
+  </div>
+
+  <button type="button" (click)="addCourse()">+ Add Course</button>
+  <br /><br />
+  <button type="submit">Calculate GPA</button>
+</form>
+
+<div *ngIf="gpa !== null">
+  <h3>Computed GPA: {{ gpa }}</h3>
+  <p>
+    Classification:
+    <strong>
+      {{
+        gpa >= 4.5 ? 'First Class' :
+          gpa >= 3.5 ? 'Second Class Upper' :
+            gpa >= 2.4 ? 'Second Class Lower' :
+              gpa >= 1.5 ? 'Third Class' :
+                gpa >= 1.0 ? 'Pass' : 'Fail'
+      }}
+    </strong>
+  </p>
+</div>

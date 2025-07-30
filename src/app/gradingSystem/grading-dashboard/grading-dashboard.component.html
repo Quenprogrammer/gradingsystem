@@ -1,0 +1,67 @@
+<h2>Dashboard</h2>
+<p>You are logged in.</p>
+<button (click)="logout()">Logout</button>
+<div class="row">
+  @for(items of statisticsDashboard; track items.details){
+    <div class="col-md-4">
+      <!-- Card -->
+      <div class="card" >
+        <div class="card-body">
+          <span class="card-subtitle">{{items.name}}</span>
+          <h2 class="card-title">{{items.value}}</h2>
+          <p class="card-text">{{items.details}}</p>
+            </div>
+      </div>
+      <!-- End Card -->
+      Copy
+
+    </div>
+  }
+  <div class="col-md-4">
+    <!-- Card -->
+    <div class="card" >
+      <div class="card-body">
+        <span class="card-subtitle">Card subtitle</span>
+        <h2 class="card-title">Card title</h2>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a class="card-link" href="#">Card link</a>
+        <a class="card-link" href="#">Another link</a>
+      </div>
+    </div>
+    <!-- End Card -->
+    Copy
+
+  </div>
+</div>
+<table class="table">
+  <thead class="thead-light">
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Name</th>
+    <th scope="col">Matric number</th>
+    <th scope="col">Department</th>
+    <th scope="col">Email</th>
+    <th scope="col">Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <th scope="row">1</th>
+    <td>Mark</td>
+    <td>ND/COM/15/0070</td>
+    <td>Computer science</td>
+    <td>&#64;mdo</td>
+    <td><div class="row g-0">
+      <div class="col-6">
+        <button class="btn btn-primary">View</button>
+      </div>
+      <div class="col-6">
+        <button class="btn btn-danger">Delete</button>
+      </div>
+    </div>
+    </td>
+  </tr>
+
+
+  </tbody>
+</table>

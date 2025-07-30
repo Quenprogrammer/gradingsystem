@@ -1,0 +1,29 @@
+<div *ngFor="let course of courses$ | async" class="course-card">
+  <div *ngIf="editingCourseId !== course.id">
+    <strong>{{ course.title }}</strong> ({{ course.code }})<br>
+    Credit Unit: {{ course.creditUnit }}<br>
+    Semester: {{ course.semester }} | Level: {{ course.level }}<br>
+    Lecturer: {{ course.lecturer || 'N/A' }}<br>
+    <button (click)="startEdit(course)">Edit</button>
+    <button (click)="deleteCourse(course.id!)">Delete</button>
+  </div>
+
+  <form [formGroup]="editForm" *ngIf="editingCourseId === course.id">
+    <input formControlName="title" placeholder="Title">
+    <input formControlName="code" placeholder="Code">
+    <input type="number" formControlName="creditUnit" placeholder="Credit Unit">
+    <select formControlName="semester">
+      <option value="First">First</option>
+      <option value="Second">Second</option>
+    </select>
+    <select formControlName="level">
+      <option>100L</option>
+      <option>200L</option>
+      <option>300L</option>
+      <option>400L</option>
+    </select>
+    <input formControlName="lecturer" placeholder="Lecturer">
+    <button type="button" (click)="updateCourse()">Update</button>
+    <button type="button" (click)="cancelEdit()">Cancel</button>
+  </form>
+</div>

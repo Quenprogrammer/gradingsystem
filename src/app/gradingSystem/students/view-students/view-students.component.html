@@ -1,0 +1,36 @@
+<div *ngFor="let student of students$ | async" class="student-card">
+  <!-- Display Mode -->
+  <div *ngIf="editingId !== student.id">
+    <strong>{{ student.fullName }}</strong> ({{ student.matricNumber }})<br>
+    {{ student.email }} | {{ student.phone }}<br>
+    Gender: {{ student.gender }} | DOB: {{ student.dob }}<br>
+    Dept: {{ student.department }} | Level: {{ student.level }}<br>
+    Course: {{ student.course }}<br>
+    Address: {{ student.address || 'N/A' }}<br>
+    Guardian: {{ student.guardianName || 'N/A' }} - {{ student.guardianPhone || 'N/A' }}<br>
+    <button (click)="startEdit(student)">Edit</button>
+    <button (click)="deleteStudent(student.id!)">Delete</button>
+  </div>
+
+  <!-- Edit Mode -->
+  <form [formGroup]="editForm" *ngIf="editingId === student.id" (ngSubmit)="updateStudent()">
+    <input formControlName="fullName" placeholder="Full Name">
+    <input formControlName="matricNumber" placeholder="Matric No">
+    <input formControlName="email" placeholder="Email">
+    <input formControlName="phone" placeholder="Phone">
+    <select formControlName="gender">
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+    </select>
+    <input type="date" formControlName="dob" placeholder="DOB">
+    <input formControlName="department" placeholder="Department">
+    <input formControlName="level" placeholder="Level">
+    <input formControlName="course" placeholder="Course">
+    <input formControlName="address" placeholder="Address">
+    <input formControlName="guardianName" placeholder="Guardian Name">
+    <input formControlName="guardianPhone" placeholder="Guardian Phone">
+
+    <button type="submit">Update</button>
+    <button type="button" (click)="cancelEdit()">Cancel</button>
+  </form>
+</div>
