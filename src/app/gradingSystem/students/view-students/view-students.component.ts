@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, signal, WritableSignal} from '@angular/core';
 import { Firestore, collection, collectionData, deleteDoc, doc, updateDoc } from '@angular/fire/firestore';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -25,9 +25,10 @@ export interface Student {
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './view-students.component.html',
-  styleUrl: './view-students.component.css'
+  styleUrl: '../../courses/view-courses/view-courses.component.css'
 })
 export class ViewStudentsComponent implements OnInit {
+  ModalOpen:WritableSignal<boolean> = signal<boolean>(false);
   students$: Observable<Student[]>;
   editForm!: FormGroup;
   editingId: string | null = null;
@@ -55,11 +56,13 @@ export class ViewStudentsComponent implements OnInit {
   }
 
   startEdit(student: Student) {
+    this.ModalOpen.set(true)
     this.editingId = student.id!;
     this.editForm.patchValue(student);
   }
 
   cancelEdit() {
+    this.ModalOpen.set(false)
     this.editingId = null;
     this.editForm.reset();
   }

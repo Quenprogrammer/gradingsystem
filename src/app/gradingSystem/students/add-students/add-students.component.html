@@ -1,82 +1,112 @@
 <div class="container mt-4 mb-5">
+  <div class="card shadow-lg border-0">
+    <div class="card-body">
   <h3 class="mb-3">Add New Student</h3>
 
-  <form [formGroup]="studentForm" (ngSubmit)="onSubmit()" class="row g-3">
+  <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
 
-    <div class="col-md-6">
-      <label class="form-label">Full Name</label>
-      <input type="text" class="form-control" formControlName="fullName">
+    <div class="row mb-4">
+      <label class="col-md-4 col-form-label">Full Name</label>
+      <div class="col-md-8">
+        <input type="text" class="form-control" formControlName="fullName">
+      </div>
     </div>
 
-    <div class="col-md-6">
-      <label class="form-label">Matric Number</label>
-      <input type="text" class="form-control" formControlName="matricNumber">
+    <div class="row mb-4">
+      <label class="col-md-4 col-form-label">Matric Number</label>
+      <div class="col-md-8">
+        <input type="text" class="form-control" formControlName="matricNumber">
+      </div>
     </div>
 
-    <div class="col-md-6">
-      <label class="form-label">Email</label>
-      <input type="email" class="form-control" formControlName="email">
+    <div class="row mb-4">
+      <label class="col-md-4 col-form-label">Email</label>
+      <div class="col-md-8">
+        <input type="email" class="form-control" formControlName="email">
+      </div>
     </div>
 
-    <div class="col-md-6">
-      <label class="form-label">Phone Number</label>
-      <input type="tel" class="form-control" formControlName="phone">
+    <div class="row mb-4">
+      <label class="col-md-4 col-form-label">Phone Number</label>
+      <div class="col-md-8">
+        <input type="tel" class="form-control" formControlName="phone">
+      </div>
     </div>
 
-    <div class="col-md-6">
-      <label class="form-label">Gender</label>
-      <select class="form-select" formControlName="gender">
-        <option value="" disabled>Select gender</option>
-        <option>Male</option>
-        <option>Female</option>
-        <option>Other</option>
-      </select>
+    <div class="row mb-4">
+      <label class="col-md-4 col-form-label">Gender</label>
+      <div class="col-md-8">
+        <select class="form-select" formControlName="gender">
+          <option value="" disabled>Select gender</option>
+          <option>male</option>
+          <option>female</option>
+        </select>
+      </div>
     </div>
 
-    <div class="col-md-6">
-      <label class="form-label">Date of Birth</label>
-      <input type="date" class="form-control" formControlName="dob">
+    <div class="row mb-4">
+      <label class="col-md-4 col-form-label">Date of Birth</label>
+      <div class="col-md-8">
+        <input type="date" class="form-control" formControlName="dob">
+      </div>
     </div>
 
-    <div class="col-md-6">
-      <label class="form-label">Department</label>
-      <input type="text" class="form-control" formControlName="department">
+    <div class="row mb-4">
+      <label class="col-md-4 col-form-label">Department</label>
+      <div class="col-md-8">
+        <input type="text" class="form-control" formControlName="department">
+      </div>
     </div>
 
-    <div class="col-md-6">
-      <label class="form-label">Level</label>
-      <select class="form-select" formControlName="level">
-        <option value="" disabled>Select level</option>
-        <option>100</option>
-        <option>200</option>
-        <option>300</option>
-        <option>400</option>
-        <option>500</option>
-      </select>
+    <div class="row mb-4">
+      <label class="col-md-4 col-form-label">Level</label>
+      <div class="col-md-8">
+        <select class="form-select" formControlName="level">
+          <option value="" disabled>Select level</option>
+          <option>100</option>
+          <option>200</option>
+          <option>300</option>
+          <option>400</option>
+
+        </select>
+      </div>
     </div>
 
-    <div class="col-md-12">
-      <label class="form-label">Course of Study</label>
-      <input type="text" class="form-control" formControlName="course">
+    <div class="row mb-4">
+      <label class="col-md-4 col-form-label">Course of Study</label>
+      <div class="col-md-8">
+        <input type="text" class="form-control" formControlName="course">
+      </div>
     </div>
 
-    <div class="col-md-12">
-      <label class="form-label">Address</label>
-      <textarea class="form-control" rows="2" formControlName="address"></textarea>
+    <div class="row mb-4">
+      <label class="col-md-4 col-form-label">Address</label>
+      <div class="col-md-8">
+        <textarea class="form-control" rows="2" formControlName="address"></textarea>
+      </div>
     </div>
 
-    <div class="col-md-6">
-      <label class="form-label">Guardian Name</label>
-      <input type="text" class="form-control" formControlName="guardianName">
+    <div class="row mb-4">
+      <label class="col-md-4 col-form-label">Guardian Name</label>
+      <div class="col-md-8">
+        <input type="text" class="form-control" formControlName="guardianName">
+      </div>
     </div>
 
-    <div class="col-md-6">
-      <label class="form-label">Guardian Phone</label>
-      <input type="tel" class="form-control" formControlName="guardianPhone">
+    <div class="row mb-4">
+      <label class="col-md-4 col-form-label">Guardian Phone</label>
+      <div class="col-md-8">
+        <input type="tel" class="form-control" formControlName="guardianPhone">
+      </div>
     </div>
 
-    <div class="col-12">
-      <button type="submit" class="btn btn-primary w-100">Add Student</button>
+    <div class="row">
+      <div class="offset-md-4 col-md-8">
+        <button type="submit" class="btn btn-primary w-100">Add Student</button>
+      </div>
     </div>
+
   </form>
+  </div>
+  </div>
 </div>

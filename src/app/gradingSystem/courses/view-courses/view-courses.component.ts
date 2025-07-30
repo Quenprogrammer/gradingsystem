@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, signal, WritableSignal} from '@angular/core';
 import {collection, collectionData, deleteDoc, doc, Firestore, updateDoc} from '@angular/fire/firestore';
 import {Course} from '../add-courses/add-courses.component';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
@@ -17,6 +17,7 @@ import {AsyncPipe, NgForOf, NgIf} from '@angular/common';
   styleUrl: './view-courses.component.css'
 })
 export class ViewCoursesComponent {
+  ModalOpen:WritableSignal<boolean> = signal<boolean>(false);
   courses$: Observable<Course[]>;
   editingCourseId: string | null = null;
   editForm!: FormGroup;
@@ -43,11 +44,13 @@ export class ViewCoursesComponent {
   }
 
   startEdit(course: Course) {
+    this.ModalOpen.set(true)
     this.editingCourseId = course.id!;
     this.editForm.patchValue(course);
   }
 
   cancelEdit() {
+    this.ModalOpen.set(false)
     this.editingCourseId = null;
     this.editForm.reset();
   }

@@ -1,67 +1,224 @@
-<h2>Dashboard</h2>
-<p>You are logged in.</p>
-<button (click)="logout()">Logout</button>
-<div class="row">
-  @for(items of statisticsDashboard; track items.details){
-    <div class="col-md-4">
+
+
+<div class="container-fluid" style="background-color: #ffffff">
+  <app-exampro></app-exampro>
+  <div class="row mt-1">
+
+
+    <div class="col-6 col-md-3 my-2 col-lg-2">
       <!-- Card -->
-      <div class="card" >
+      <div class="card shadow-lg border-0" >
         <div class="card-body">
-          <span class="card-subtitle">{{items.name}}</span>
-          <h2 class="card-title">{{items.value}}</h2>
-          <p class="card-text">{{items.details}}</p>
+          <span class="card-subtitle">Students</span>
+          <h2 class="card-title">{{ studentCount() }}</h2>
+          <p class="card-text"></p>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-6 col-md-3 my-2 col-lg-2">
+      <!-- Card -->
+      <div class="card shadow-lg border-0" >
+        <div class="card-body">
+          <span class="card-subtitle">Results</span>
+          <h2 class="card-title">{{ resultCount() }}</h2>
+          <p class="card-text"></p>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-6 col-md-3 my-2 col-lg-2">
+      <!-- Card -->
+      <div class="card shadow-lg border-0" >
+        <div class="card-body">
+          <span class="card-subtitle">Courses</span>
+          <h2 class="card-title">{{ courseCount() }}</h2>
+          <p class="card-text"></p>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-6 col-md-3 my-2 col-lg-2">
+      <!-- Card -->
+      <div class="card shadow-lg border-0" >
+        <div class="card-body">
+          <span class="card-subtitle">Result checks</span>
+          <h2 class="card-title">{{ studentCount() }}</h2>
+          <p class="card-text"></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+
+  <div class="row">
+    <div class="col-lg-5 mb-3 mb-lg-5">
+      <!-- Card -->
+      <div class="card h-100">
+        <!-- Header -->
+        <div class="card-header card-header-content-between">
+          <h4 class="card-header-title">Overview</h4>
+
+
+        </div>
+        <!-- End Header -->
+
+        <!-- Body -->
+        <div class="card-body">
+          <div class="row g-1">
+
+            <div class="col-6 col-sm-6 my-2 col-lg-3">
+              <!-- Card -->
+              <div class="card shadow-lg border-0" >
+                <div class="card-body">
+
+                  <span class="card-subtitle">Level 100</span>
+                  <h2 class="card-title">{{ stats()?.level100 }}</h2>
+                  <p class="card-text"></p>
+                </div>
+              </div>
+
             </div>
+            <div class="col-6 col-sm-6 my-2 col-lg-3">
+              <!-- Card -->
+              <div class="card shadow-lg border-0" >
+                <div class="card-body">
+
+                  <span class="card-subtitle">Level 200</span>
+                  <h2 class="card-title">{{ stats()?.level200 }}</h2>
+                  <p class="card-text"></p>
+                </div>
+              </div>
+
+            </div>
+            <div class="col-6 col-sm-6 my-2 col-lg-3">
+              <!-- Card -->
+              <div class="card shadow-lg border-0" >
+                <div class="card-body">
+
+                  <span class="card-subtitle">Level 300</span>
+                  <h2 class="card-title">{{ stats()?.level300 }}</h2>
+                  <p class="card-text"></p>
+                </div>
+              </div>
+
+            </div>
+            <div class="col-6 col-sm-6 my-2 col-lg-3">
+              <!-- Card -->
+              <div class="card shadow-lg border-0" >
+                <div class="card-body">
+
+                  <span class="card-subtitle">Level 400</span>
+                  <h2 class="card-title">{{ stats()?.level400 }}</h2>
+                  <p class="card-text"></p>
+                </div>
+              </div>
+
+            </div>
+
+
+          </div>
+          <div class="col mb-3 mt-3">
+
+            <div class=" card-sm  border-1 shadow-none h-100 mb-1">
+              <h4 class="text-center mt-4 mb-1">Academic Performance</h4>
+              <div class="card-body">
+                <div >
+                  <div class="card--footer mb-1 pt-2">
+                    <div class="row justify-content-between">
+                      <div class="col-6"><h4 class="card--subtitle">Level 1</h4></div>
+                      <div class="col-6">      <h4 class="card--subtitle text-end">43%</h4></div>
+                    </div>
+
+
+
+                    <div class="progress" style="height: 8px;">
+                      <div class="progress-bar bg-success" role="progressbar" style="width: 43%" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+                  <div class="card--footer mb-1 pt-2">
+                    <div class="row justify-content-between">
+                      <div class="col-6"><h4 class="card--subtitle">Level 1</h4></div>
+                      <div class="col-6">      <h4 class="card--subtitle text-end">43%</h4></div>
+                    </div>
+
+
+
+                    <div class="progress" style="height: 8px;">
+                      <div class="progress-bar bg-success" role="progressbar" style="width: 43%" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+                  <div class="card--footer mb-1 pt-2">
+                    <div class="row justify-content-between">
+                      <div class="col-6"><h4 class="card--subtitle">Level 1</h4></div>
+                      <div class="col-6">      <h4 class="card--subtitle text-end">43%</h4></div>
+                    </div>
+
+
+
+                    <div class="progress" style="height: 8px;">
+                      <div class="progress-bar bg-success" role="progressbar" style="width: 43%" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+                  <div class="card--footer mb-1 pt-2">
+                    <div class="row justify-content-between">
+                      <div class="col-6"><h4 class="card--subtitle">Level 1</h4></div>
+                      <div class="col-6">      <h4 class="card--subtitle text-end">43%</h4></div>
+                    </div>
+
+
+
+                    <div class="progress" style="height: 8px;">
+                      <div class="progress-bar bg-success" role="progressbar" style="width: 43%" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+
+            </div>
+            <!-- End Card -->
+          </div>
+        </div>
+        <!-- End Body -->
       </div>
       <!-- End Card -->
-      Copy
-
     </div>
-  }
-  <div class="col-md-4">
-    <!-- Card -->
-    <div class="card" >
-      <div class="card-body">
-        <span class="card-subtitle">Card subtitle</span>
-        <h2 class="card-title">Card title</h2>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a class="card-link" href="#">Card link</a>
-        <a class="card-link" href="#">Another link</a>
+    <!-- End Col -->
+
+    <div class="col-lg-7 mb-3 mb-lg-5">
+      <!-- Card -->
+      <div class="card h-100">
+        <!-- Header -->
+        <div class="card-header card-header-content-sm-between">
+          <h4 class="card-header-title mb-2 mb-sm-0">Result stats</h4>
+
+          <!-- End Nav -->
+        </div>
+        <!-- End Header -->
+
+        <!-- Body -->
+        <div class="card-body">
+          <div class="row mb-4">
+            <app-income-vs-expensis></app-income-vs-expensis>
+
+            <!-- End Col -->
+          </div>
+
+        </div>
+        <!-- End Body -->
       </div>
+      <!-- End Card -->
     </div>
-    <!-- End Card -->
-    Copy
-
+    <!-- End Col -->
   </div>
+  <div class="car-d shadow-lg border-0 card-body mt-4">
+    <app-dashboard-results></app-dashboard-results>
+  </div>
+
 </div>
-<table class="table">
-  <thead class="thead-light">
-  <tr>
-    <th scope="col">#</th>
-    <th scope="col">Name</th>
-    <th scope="col">Matric number</th>
-    <th scope="col">Department</th>
-    <th scope="col">Email</th>
-    <th scope="col">Action</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr>
-    <th scope="row">1</th>
-    <td>Mark</td>
-    <td>ND/COM/15/0070</td>
-    <td>Computer science</td>
-    <td>&#64;mdo</td>
-    <td><div class="row g-0">
-      <div class="col-6">
-        <button class="btn btn-primary">View</button>
-      </div>
-      <div class="col-6">
-        <button class="btn btn-danger">Delete</button>
-      </div>
-    </div>
-    </td>
-  </tr>
-
-
-  </tbody>
-</table>

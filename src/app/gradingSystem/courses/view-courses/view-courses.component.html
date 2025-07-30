@@ -1,29 +1,615 @@
-<div *ngFor="let course of courses$ | async" class="course-card">
-  <div *ngIf="editingCourseId !== course.id">
-    <strong>{{ course.title }}</strong> ({{ course.code }})<br>
-    Credit Unit: {{ course.creditUnit }}<br>
-    Semester: {{ course.semester }} | Level: {{ course.level }}<br>
-    Lecturer: {{ course.lecturer || 'N/A' }}<br>
-    <button (click)="startEdit(course)">Edit</button>
-    <button (click)="deleteCourse(course.id!)">Delete</button>
-  </div>
+<div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 mb-5">
+  <div class="col mb-5">
+    <!-- Card -->
+    <div class="card card-bordered h-100">
+      <!-- Card Pinned -->
+      <div class="card-pinned">
+        <img class="card-img-top" src="../assets/svg/components/card-12.svg" alt="Image Description">
 
-  <form [formGroup]="editForm" *ngIf="editingCourseId === course.id">
-    <input formControlName="title" placeholder="Title">
-    <input formControlName="code" placeholder="Code">
-    <input type="number" formControlName="creditUnit" placeholder="Credit Unit">
-    <select formControlName="semester">
-      <option value="First">First</option>
-      <option value="Second">Second</option>
-    </select>
-    <select formControlName="level">
-      <option>100L</option>
-      <option>200L</option>
-      <option>300L</option>
-      <option>400L</option>
-    </select>
-    <input formControlName="lecturer" placeholder="Lecturer">
-    <button type="button" (click)="updateCourse()">Update</button>
-    <button type="button" (click)="cancelEdit()">Cancel</button>
-  </form>
+        <div class="card-pinned-top-start">
+          <small class="badge bg-success rounded-pill">Bestseller</small>
+        </div>
+
+        <div class="card-pinned-bottom-start">
+          <div class="d-flex align-items-center flex-wrap">
+            <!-- Rating -->
+            <div class="d-flex gap-1">
+              <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+              <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+              <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+              <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+              <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+            </div>
+            <!-- End Rating -->
+            <div class="ms-1">
+              <span class="fw-semibold text-white me-1">4.91</span>
+              <span class="text-white-70">(1.5k+ reviews)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Card Pinned -->
+
+      <!-- Card Body -->
+      <div class="card-body">
+        <small class="card-subtitle">Code</small>
+
+        <div class="mb-3">
+          <h3 class="card-title">
+            <a class="text-dark" href="../demo-course/course-overview.html">Complete Python Bootcamp: Go from zero to hero in Python</a>
+          </h3>
+        </div>
+
+        <div class="row align-items-center">
+          <div class="col">
+            <div class="avatar-group avatar-group-xs">
+              <a class="avatar avatar-xs avatar-circle" data-toggle="tooltip" data-placement="top" title="Nataly Gaga" href="#">
+                <img class="avatar-img" src="../assets/img/160x160/img3.jpg" alt="Image Description">
+              </a>
+            </div>
+          </div>
+          <!-- End Col -->
+
+          <div class="col-auto">
+            <ul class="list-inline list-separator small ms-auto">
+              <li class="list-inline-item">
+                <i class="bi-book me-1"></i> 10 lessons
+              </li>
+              <li class="list-inline-item">
+                <i class="bi-clock me-1"></i> 3h 25m
+              </li>
+            </ul>
+          </div>
+          <!-- End Col -->
+        </div>
+        <!-- End Row -->
+      </div>
+      <!-- End Card Body -->
+
+      <!-- Card Footer -->
+      <div class="card-footer pt-0">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="me-2">
+            <span class="d-block text-muted small"><del>$114.99</del></span>
+            <h5 class="card-title">$99.99</h5>
+          </div>
+          <a class="btn btn-primary btn-sm btn-transition" href="../demo-course/course-overview.html">Preview</a>
+        </div>
+      </div>
+      <!-- End Card Footer -->
+    </div>
+    <!-- End Card -->
+  </div>
+  <!-- End Col -->
+
+  <div class="col mb-5">
+    <!-- Card -->
+    <div class="card card-bordered h-100">
+      <!-- Card Pinned -->
+      <div class="card-pinned">
+        <img class="card-img-top" src="../assets/svg/components/card-13.svg" alt="Image Description">
+
+        <div class="card-pinned-bottom-start">
+          <div class="d-flex align-items-center flex-wrap">
+            <!-- Rating -->
+            <div class="d-flex gap-1">
+              <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+              <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+              <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+              <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+              <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+            </div>
+            <!-- End Rating -->
+            <div class="ms-1">
+              <span class="fw-semibold text-white me-1">4.95</span>
+              <span class="text-white-70">(1k+ reviews)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Card Pinned -->
+
+      <!-- Card Body -->
+      <div class="card-body">
+        <small class="card-subtitle">Design &amp; Illustration</small>
+
+        <div class="mb-3">
+          <h3 class="card-title">
+            <a class="text-dark" href="../demo-course/course-overview.html">From the Top: Adobe Illustrator for Beginners</a>
+          </h3>
+        </div>
+
+        <div class="row align-items-center">
+          <div class="col">
+            <div class="avatar-group avatar-group-xs">
+              <a class="avatar avatar-xs avatar-circle" data-toggle="tooltip" data-placement="top" title="Emily Milda" href="#">
+                <img class="avatar-img" src="../assets/img/160x160/img8.jpg" alt="Image Description">
+              </a>
+              <a class="avatar avatar-xs avatar-circle" data-toggle="tooltip" data-placement="top" title="John O'nolan" href="#">
+                <img class="avatar-img" src="../assets/img/160x160/img4.jpg" alt="Image Description">
+              </a>
+            </div>
+          </div>
+          <!-- End Col -->
+
+          <div class="col-auto">
+            <ul class="list-inline list-separator small ms-auto">
+              <li class="list-inline-item">
+                <i class="bi-book me-1"></i> 8 lessons
+              </li>
+              <li class="list-inline-item">
+                <i class="bi-clock me-1"></i> 7h 59m
+              </li>
+            </ul>
+          </div>
+          <!-- End Col -->
+        </div>
+        <!-- End Row -->
+      </div>
+      <!-- End Card Body -->
+
+      <!-- Card Footer -->
+      <div class="card-footer pt-0">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="me-2">
+            <span class="d-block text-muted small"><del>$129.99</del></span>
+            <h5 class="card-title">$119.99</h5>
+          </div>
+          <a class="btn btn-primary btn-sm btn-transition" href="../demo-course/course-overview.html">Preview</a>
+        </div>
+      </div>
+      <!-- End Card Footer -->
+    </div>
+    <!-- End Card -->
+  </div>
+  <!-- End Col -->
+
+  <div class="col mb-5">
+    <!-- Card -->
+    <div class="card card-bordered h-100">
+      <!-- Card Pinned -->
+      <div class="card-pinned">
+        <img class="card-img-top" src="../assets/svg/components/card-6.svg" alt="Image Description">
+
+        <div class="card-pinned-top-start">
+          <small class="badge bg-success rounded-pill">Featured</small>
+        </div>
+
+        <div class="card-pinned-bottom-start">
+          <div class="d-flex align-items-center flex-wrap">
+            <!-- Rating -->
+            <div class="d-flex gap-1">
+              <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+              <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+              <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+              <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+              <img src="../assets/svg/illustrations/star-half.svg" alt="Review rating" width="16">
+            </div>
+            <!-- End Rating -->
+            <div class="ms-1">
+              <span class="fw-semibold text-white me-1">4.73</span>
+              <span class="text-white-70">(4.7k+ reviews)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Card Pinned -->
+
+      <!-- Card Body -->
+      <div class="card-body">
+        <small class="card-subtitle">Code</small>
+
+        <div class="mb-3">
+          <h3 class="card-title">
+            <a class="text-dark" href="../demo-course/course-overview.html">Get started with Vue.js</a>
+          </h3>
+        </div>
+
+        <div class="row align-items-center">
+          <div class="col">
+            <div class="avatar-group avatar-group-xs">
+              <a class="avatar avatar-xs avatar-circle" data-toggle="tooltip" data-placement="top" title="Aaron Larsson" href="#">
+                <img class="avatar-img" src="../assets/img/160x160/img3.jpg" alt="Image Description">
+              </a>
+              <a class="avatar avatar-xs avatar-circle" data-toggle="tooltip" data-placement="top" title="Hanna Wolfe" href="#">
+                <img class="avatar-img" src="../assets/img/160x160/img7.jpg" alt="Image Description">
+              </a>
+            </div>
+          </div>
+          <!-- End Col -->
+
+          <div class="col-auto">
+            <ul class="list-inline list-separator small ms-auto">
+              <li class="list-inline-item">
+                <i class="bi-book me-1"></i> 25 lessons
+              </li>
+              <li class="list-inline-item">
+                <i class="bi-clock me-1"></i> 17h 46m
+              </li>
+            </ul>
+          </div>
+          <!-- End Col -->
+        </div>
+        <!-- End Row -->
+      </div>
+      <!-- End Card Body -->
+
+      <!-- Card Footer -->
+      <div class="card-footer pt-0">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="me-2">
+            <span class="d-block text-muted small"><del>$169.99</del></span>
+            <h5 class="card-title">$129.99</h5>
+          </div>
+          <a class="btn btn-primary btn-sm btn-transition" href="../demo-course/course-overview.html">Preview</a>
+        </div>
+      </div>
+      <!-- End Card Footer -->
+    </div>
+    <!-- End Card -->
+  </div>
+  <!-- End Col -->
+
+  <div class="col mb-5">
+    <!-- Card -->
+    <div class="card card-bordered h-100">
+      <!-- Card Pinned -->
+      <div class="card-pinned">
+        <img class="card-img-top" src="../assets/svg/components/card-15.svg" alt="Image Description">
+
+        <div class="card-pinned-bottom-start">
+          <div class="d-flex align-items-center flex-wrap">
+            <!-- Rating -->
+            <div class="d-flex gap-1">
+              <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+              <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+              <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+              <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+              <img src="../assets/svg/illustrations/star-muted.svg" alt="Review rating" width="16">
+            </div>
+            <!-- End Rating -->
+            <div class="ms-1">
+              <span class="fw-semibold text-white me-1">4.47</span>
+              <span class="text-white-70">(3.8k+ reviews)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Card Pinned -->
+
+      <!-- Card Body -->
+      <div class="card-body">
+        <small class="card-subtitle">Code</small>
+
+        <div class="mb-3">
+          <h3 class="card-title">
+            <a class="text-dark" href="../demo-course/course-overview.html">The Ultimate MySQL Bootcamp: Go from SQL Beginner to Expert</a>
+          </h3>
+        </div>
+
+        <div class="row align-items-center">
+          <div class="col">
+            <div class="avatar-group avatar-group-xs">
+              <a class="avatar avatar-xs avatar-circle" data-toggle="tooltip" data-placement="top" title="Hanna Wolfe" href="#">
+                <img class="avatar-img" src="../assets/img/160x160/img7.jpg" alt="Image Description">
+              </a>
+            </div>
+          </div>
+          <!-- End Col -->
+
+          <div class="col-auto">
+            <ul class="list-inline list-separator small ms-auto">
+              <li class="list-inline-item">
+                <i class="bi-book me-1"></i> 42 lessons
+              </li>
+              <li class="list-inline-item">
+                <i class="bi-clock me-1"></i> 31h 5m
+              </li>
+            </ul>
+          </div>
+          <!-- End Col -->
+        </div>
+        <!-- End Row -->
+      </div>
+      <!-- End Card Body -->
+
+      <!-- Card Footer -->
+      <div class="card-footer pt-0">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="me-2">
+            <span class="d-block text-muted small"><del>$159.99</del></span>
+            <h5 class="card-title">$111.99</h5>
+          </div>
+          <a class="btn btn-primary btn-sm btn-transition" href="../demo-course/course-overview.html">Preview</a>
+        </div>
+      </div>
+      <!-- End Card Footer -->
+    </div>
+    <!-- End Card -->
+  </div>
+  <!-- End Col -->
+
+  <div class="col mb-5">
+    <!-- Card -->
+    <div class="card card-bordered h-100">
+      <!-- Card Pinned -->
+      <div class="card-pinned">
+        <img class="card-img-top" src="../assets/svg/components/card-4.svg" alt="Image Description">
+
+        <div class="card-pinned-bottom-start">
+          <div class="d-flex align-items-center flex-wrap">
+            <!-- Rating -->
+            <div class="d-flex gap-1">
+              <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+              <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+              <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+              <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+              <img src="../assets/svg/illustrations/star-half.svg" alt="Review rating" width="16">
+            </div>
+            <!-- End Rating -->
+            <div class="ms-1">
+              <span class="fw-semibold text-white me-1">4.64</span>
+              <span class="text-white-70">(723 reviews)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Card Pinned -->
+
+      <!-- Card Body -->
+      <div class="card-body">
+        <small class="card-subtitle">Code</small>
+
+        <div class="mb-3">
+          <h3 class="card-title">
+            <a class="text-dark" href="../demo-course/course-overview.html">Coding block for WordPress</a>
+          </h3>
+        </div>
+
+        <div class="row align-items-center">
+          <div class="col">
+            <div class="avatar-group avatar-group-xs">
+              <a class="avatar avatar-xs avatar-circle" data-toggle="tooltip" data-placement="top" title="Hanna Wolfe" href="#">
+                <img class="avatar-img" src="../assets/img/160x160/img7.jpg" alt="Image Description">
+              </a>
+              <div class="avatar avatar-xs avatar-circle" data-toggle="tooltip" data-placement="top" title="John O'nolan">
+                <img class="avatar-img" src="../assets/img/160x160/img4.jpg" alt="Image Description">
+              </div>
+            </div>
+          </div>
+          <!-- End Col -->
+
+          <div class="col-auto">
+            <ul class="list-inline list-separator small ms-auto">
+              <li class="list-inline-item">
+                <i class="bi-book me-1"></i> 5 lessons
+              </li>
+              <li class="list-inline-item">
+                <i class="bi-clock me-1"></i> 8h 12m
+              </li>
+            </ul>
+          </div>
+          <!-- End Col -->
+        </div>
+        <!-- End Row -->
+      </div>
+      <!-- End Card Body -->
+
+      <!-- Card Footer -->
+      <div class="card-footer pt-0">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="me-2">
+            <span class="d-block text-muted small"><del>$64.99</del></span>
+            <h5 class="card-title">$29.99</h5>
+          </div>
+          <a class="btn btn-primary btn-sm btn-transition" href="../demo-course/course-overview.html">Preview</a>
+        </div>
+      </div>
+      <!-- End Card Footer -->
+    </div>
+    <!-- End Card -->
+  </div>
+  <!-- End Col -->
+
+  <div class="col mb-5">
+    <!-- Card -->
+    <div class="card card-bordered h-100">
+      <!-- Card Pinned -->
+      <div class="card-pinned">
+        <img class="card-img-top" src="../assets/svg/components/card-14.svg" alt="Image Description">
+
+        <div class="card-pinned-top-start">
+          <small class="badge bg-success rounded-pill">Hot</small>
+        </div>
+
+        <div class="card-pinned-bottom-start">
+          <div class="d-flex align-items-center flex-wrap">
+            <!-- Rating -->
+            <div class="d-flex gap-1">
+              <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+              <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+              <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+              <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+              <img src="../assets/svg/illustrations/star.svg" alt="Review rating" width="16">
+            </div>
+            <!-- End Rating -->
+            <div class="ms-1">
+              <span class="fw-semibold text-white me-1">4.9</span>
+              <span class="text-white-70">(961 reviews)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Card Pinned -->
+
+      <!-- Card Body -->
+      <div class="card-body">
+        <small class="card-subtitle">Design &amp; Illustration</small>
+
+        <div class="mb-3">
+          <h3 class="card-title">
+            <a class="text-dark" href="../demo-course/course-overview.html">Creative Magazine Layout Design</a>
+          </h3>
+        </div>
+
+        <div class="row align-items-center">
+          <div class="col">
+            <div class="avatar-group avatar-group-xs">
+              <a class="avatar avatar-xs avatar-circle" data-toggle="tooltip" data-placement="top" title="Hanna Wolfe" href="#">
+                <img class="avatar-img" src="../assets/img/160x160/img7.jpg" alt="Image Description">
+              </a>
+            </div>
+          </div>
+          <!-- End Col -->
+
+          <div class="col-auto">
+            <ul class="list-inline list-separator small ms-auto">
+              <li class="list-inline-item">
+                <i class="bi-book me-1"></i> 35 lessons
+              </li>
+              <li class="list-inline-item">
+                <i class="bi-clock me-1"></i> 21h
+              </li>
+            </ul>
+          </div>
+          <!-- End Col -->
+        </div>
+        <!-- End Row -->
+      </div>
+      <!-- End Card Body -->
+
+      <!-- Card Footer -->
+      <div class="card-footer pt-0">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="me-2">
+            <span class="d-block text-muted small"><del>$179.99</del></span>
+            <h5 class="card-title">$129.99</h5>
+          </div>
+          <a class="btn btn-primary btn-sm btn-transition" href="../demo-course/course-overview.html">Preview</a>
+        </div>
+      </div>
+      <!-- End Card Footer -->
+    </div>
+    <!-- End Card -->
+  </div>
+  <!-- End Col -->
 </div>
+
+<div *ngFor="let course of courses$ | async" class="card mb-4">
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+      <thead class="table-light">
+      <tr>
+        <th>Title</th>
+        <th>Code</th>
+        <th>Credit Unit</th>
+        <th>Semester</th>
+        <th>Level</th>
+        <th>Lecturer</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let course of courses$ | async">
+        <!-- Use *ngIf for display/edit logic here -->
+        <ng-container *ngIf="editingCourseId !== course.id; else editRow">
+          <td>{{ course.title }}</td>
+          <td>{{ course.code }}</td>
+          <td>{{ course.creditUnit }}</td>
+          <td>{{ course.semester }}</td>
+          <td>{{ course.level }}</td>
+          <td>{{ course.lecturer || 'N/A' }}</td>
+          <td>
+            <button class="btn btn-outline-primary btn-sm me-2" (click)="startEdit(course)">Edit</button>
+            <button class="btn btn-outline-danger btn-sm" (click)="deleteCourse(course.id!)">Delete</button>
+          </td>
+        </ng-container>
+        <ng-template #editRow>
+          <!-- Editable row will go here -->
+        </ng-template>
+      </tr>
+      </tbody>
+    </table>
+
+
+
+  </div>
+  <div *ngIf="ModalOpen()" class="modal-overlay">
+    <div class="modal-content">
+      <div class="card h-100">
+        <!-- Header -->
+        <div class="card-header d-flex justify-content-end gap-2">
+          <h2 class="card-header-title me-auto">Cover image</h2> <!-- Keeps title on the left -->
+          <a class="btn btn-ghost-danger btn-sm" (click)="this.ModalOpen.set(false)">Close</a>
+
+        </div>
+
+
+
+        <div class="card-body-height p-3">
+          <form [formGroup]="editForm" *ngIf="editingCourseId === course.id">
+            <div class="row mb-3">
+              <label class="col-sm-3 col-form-label form-label">Title</label>
+              <div class="col-sm-9">
+                <input type="text" formControlName="title" class="form-control" placeholder="Title" />
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label class="col-sm-3 col-form-label form-label">Code</label>
+              <div class="col-sm-9">
+                <input type="text" formControlName="code" class="form-control" placeholder="Code" />
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label class="col-sm-3 col-form-label form-label">Credit Unit</label>
+              <div class="col-sm-9">
+                <input type="number" formControlName="creditUnit" class="form-control" placeholder="Credit Unit" />
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label class="col-sm-3 col-form-label form-label">Semester</label>
+              <div class="col-sm-9">
+                <select formControlName="semester" class="form-select">
+                  <option value="First">First</option>
+                  <option value="Second">Second</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label class="col-sm-3 col-form-label form-label">Level</label>
+              <div class="col-sm-9">
+                <select formControlName="level" class="form-select">
+                  <option>100L</option>
+                  <option>200L</option>
+                  <option>300L</option>
+                  <option>400L</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row mb-4">
+              <label class="col-sm-3 col-form-label form-label">Lecturer</label>
+              <div class="col-sm-9">
+                <input type="text" formControlName="lecturer" class="form-control" placeholder="Lecturer" />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="offset-sm-3 col-sm-9">
+                <button type="button" class="btn btn-success me-2" (click)="updateCourse()">Update</button>
+                <button type="button" class="btn btn-secondary" (click)="cancelEdit()">Cancel</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- End Body -->
+      </div>
+    </div>
+  </div>
+</div>
+

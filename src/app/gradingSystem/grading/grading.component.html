@@ -1,45 +1,225 @@
-<h2>University Grading System</h2>
+<div class="container my-5">
+  <h2 class="mb-4">University Grading System</h2>
 
-<form [formGroup]="gradingForm" (ngSubmit)="calculateGrades()">
-  <label>Student Name:</label>
-  <input formControlName="studentName" placeholder="Enter student name" />
+  <form [formGroup]="gradingForm" (ngSubmit)="calculateGrades()">
+    <div class="row mb-3">
+      <label class="col-md-3 col-form-label">Student Name:</label>
+      <div class="col-md-9">
+        <input type="text" class="form-control" formControlName="studentName" placeholder="Enter student name">
+      </div>
+    </div>
 
-  <label>Matric Number:</label>
-  <input formControlName="matricNumber" placeholder="Enter matric number" />
+    <div class="row mb-4">
+      <label class="col-md-3 col-form-label">Matric Number:</label>
+      <div class="col-md-9">
+        <input type="text" class="form-control" formControlName="matricNumber" placeholder="Enter matric number">
+      </div>
+    </div>
+    <div class="row g-1 mb-3">
+      <div class="col-auto">
+        <button type="button"
+                class="btn btn-outline-primary btn-sm"
+                (click)="openStudentModal()">
+          Select Student
+        </button>
+      </div>
+    </div>
 
-  <div formArrayName="courses">
-    <div *ngFor="let course of courses.controls; let i = index" [formGroupName]="i" class="course-row">
-      <h4>Course {{ i + 1 }}</h4>
-      <input formControlName="courseTitle" placeholder="Course Title" />
-      <input type="number" formControlName="creditUnit" placeholder="Credit Unit" />
-      <input type="number" formControlName="score" placeholder="Score" />
 
-      <div *ngIf="course.get('grade')?.value">
-        Grade: <strong>{{ course.get('grade')?.value }}</strong> |
-        Grade Point: <strong>{{ course.get('gradePoint')?.value }}</strong>
+    <div class="row" formArrayName="courses">
+      <div *ngFor="let course of courses.controls; let i = index" [formGroupName]="i" class="col-lg-6 mb-3">
+        <div class="border rounded p-3 mb-4 h-100">
+          <h5>{{ course.get('courseTitle')?.value || ('Course ' + (i + 1)) }}</h5>
+
+          <div class="row mb-3">
+            <label class="col-md-3 col-form-label">Course Title:</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" formControlName="courseTitle" placeholder="Course Title">
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label class="col-md-3 col-form-label">Credit Unit:</label>
+            <div class="col-md-9">
+              <input type="number" class="form-control" formControlName="creditUnit" placeholder="Credit Unit">
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label class="col-md-3 col-form-label">Score:</label>
+            <div class="col-md-9">
+              <input type="number" class="form-control" formControlName="score" placeholder="Score">
+            </div>
+          </div>
+
+          <div *ngIf="course.get('grade')?.value" class="alert alert-secondary py-2">
+            Grade: <strong>{{ course.get('grade')?.value }}</strong> |
+            Grade Point: <strong>{{ course.get('gradePoint')?.value }}</strong>
+          </div>
+
+          <div class="text-end">
+            <div class="row g-1">
+              <div class="col-auto">
+                <button type="button" class="btn btn-outline-primary btn-sm" (click)="openModalForCourse(i)">
+                  Select course
+                </button>
+              </div>
+              <div class="col-auto">
+                <button type="button" class="btn btn-outline-danger btn-sm" (click)="removeCourse(i)">
+                  Remove
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="mb-4">
+      <button type="button" class="btn btn-outline-primary" (click)="addCourse()">+ Add Course</button>
+    </div>
+
+    <div class="d-grid">
+      <button type="submit" class="btn btn-success" (click)="onSubmit()">Calculate & Save GPA</button>
+    </div>
+
+  </form>
+
+  <div *ngIf="gpa !== null" class="mt-4 alert alert-info">
+    <h4>Computed GPA: {{ gpa }}</h4>
+    <p>
+      Classification:
+      <strong>
+        {{
+          gpa >= 4.5 ? 'First Class' :
+            gpa >= 3.5 ? 'Second Class Upper' :
+              gpa >= 2.4 ? 'Second Class Lower' :
+                gpa >= 1.5 ? 'Third Class' :
+                  gpa >= 1.0 ? 'Pass' : 'Fail'
+        }}
+      </strong>
+    </p>
+  </div>
+</div>
+<div *ngIf="ModalOpen()" class="modal-overlay">
+  <div class="modal-content">
+    <div class="card h-100">
+      <!-- Header -->
+      <div class="card-header d-flex justify-content-end gap-2">
+
+        <a class="btn btn-danger btn-sm" (click)="this.ModalOpen.set(false)">Close</a>
+
       </div>
 
-      <button type="button" (click)="removeCourse(i)">Remove</button>
+
+
+      <div class="card-body-height p-3">
+        <!-- course-list.component.html -->
+        <div class="container  ">
+
+
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped w-100">
+              <thead class="bg-dark text-white">
+              <tr>
+                <th>Sn</th>
+                <th>Title</th>
+                <th>Code</th>
+                <th>Credit Unit</th>
+                <th>Semester</th>
+                <th>Level</th>
+                <th></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let course of courses$ | async; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ course.title }}</td>
+                <td>{{ course.code }}</td>
+                <td>{{ course.creditUnit }}</td>
+                <td>{{ course.semester }}</td>
+                <td>{{ course.level }}</td>
+                <td>
+                  <button class="btn btn-primary btn-sm w-100"
+                          (click)="selectCourseFromModal(course)">
+                    Select
+                  </button>
+                </td>
+
+              </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- End Body -->
     </div>
   </div>
+</div>
+<div *ngIf="ModalOpenStudent()" class="modal-overlay">
+  <div class="modal-content">
+    <div class="card h-100">
+      <!-- Header -->
+      <div class="card-header d-flex justify-content-end gap-2">
 
-  <button type="button" (click)="addCourse()">+ Add Course</button>
-  <br /><br />
-  <button type="submit">Calculate GPA</button>
-</form>
+        <a class="btn btn-danger btn-sm" (click)="this.ModalOpenStudent.set(false)">Close</a>
 
-<div *ngIf="gpa !== null">
-  <h3>Computed GPA: {{ gpa }}</h3>
-  <p>
-    Classification:
-    <strong>
-      {{
-        gpa >= 4.5 ? 'First Class' :
-          gpa >= 3.5 ? 'Second Class Upper' :
-            gpa >= 2.4 ? 'Second Class Lower' :
-              gpa >= 1.5 ? 'Third Class' :
-                gpa >= 1.0 ? 'Pass' : 'Fail'
-      }}
-    </strong>
-  </p>
+      </div>
+
+
+
+      <div class="card-body-height p-3">
+        <!-- course-list.component.html -->
+        <div class="container  ">
+
+
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped w-100">
+              <thead class="bg-dark text-white">
+              <tr>
+                <th>Sn</th>
+                <th>Full name</th>
+                <th>Matric Number</th>
+                <th>Gender</th>
+                <th>Courses</th>
+                <th>Department</th>
+                <th>Level</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let students of students$ | async; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ students.fullName }}</td>
+                <td>{{ students.matricNumber }}</td>
+                <td>{{ students.gender }}</td>
+                <td>{{ students.course }}</td>
+                <td>{{ students.department }}</td>
+                <td>{{ students.level }}</td>
+
+                <td>
+                  <button class="btn btn-primary btn-sm w-100"
+                          (click)="selectStudentFromModal(students)">
+                    Select
+                  </button>
+                </td>
+
+
+              </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- End Body -->
+    </div>
+  </div>
 </div>

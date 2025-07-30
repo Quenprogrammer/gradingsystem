@@ -1,0 +1,28 @@
+.bg-soft-info {
+  background-color: rgba(0, 123, 255, 0.1);
+}
+
+.chartjs-doughnut-custom-stat small {
+  display: block;
+  font-size: 0.8rem;
+  margin-bottom: 0.25rem;
+  letter-spacing: 1px;
+}
+
+.col-divider > div {
+  border-right: 1px solid #eee;
+}
+
+.col-divider > div:last-child {
+  border-right: none;
+}
+
+.badge {
+  font-weight: 500;
+}
+.chart-legend .legend-box {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+}

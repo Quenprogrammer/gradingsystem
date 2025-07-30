@@ -1,0 +1,29 @@
+.a4-page {
+  width: 210mm;
+  min-height: 200mm;
+  padding: 20mm;
+  background: white;
+
+  font-size: 14px;
+  color: #000;
+}
+
+/* Remove spacing & hide button during print */
+@media print {
+  body {
+    margin: 0;
+    padding: 0;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .a4-page {
+    box-shadow: none;
+    width: auto;
+    min-height: auto;
+    padding: 0;
+  }
+
+  button {
+    display: none !important;
+  }
+}

@@ -1,0 +1,120 @@
+<div class="table-responsive">
+  <table class="table">
+    <thead class="table-dark">
+    <tr>
+      <th scope="col" style="width: 5%;">#</th>
+      <th scope="col" style="width: 15%;">Name</th>
+      <th scope="col" style="width: 15%;">Matric number</th>
+      <th scope="col" style="width: 15%;">Department</th>
+      <th scope="col" style="width: 10%;">Level</th>
+      <th scope="col" style="width: 10%;">GPA</th>
+      <th scope="col" style="width: 20%;">Uploaded Date</th>
+      <th scope="col" style="width: 20%;">Action</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr *ngFor="let result of results$ | async; index as i">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ result.studentName || 'Not specified' }}</td>
+      <td>{{ result.matricNumber || 'Not specified' }}</td>
+      <td>{{ result.department || 'Not specified' }}</td>
+      <td>{{ result.level || 'Not specified' }}</td>
+      <td>{{ result.gpa || 0 }}</td>
+      <td>{{ formatDate(result.createdAt) }}</td>
+      <td>
+        <div class="d-flex flex-wrap gap-1">
+          <button
+            class="btn btn-primary btn-sm"
+            data-bs-toggle="modal"
+            data-bs-target="#resultModal"
+            (click)="viewResult(result)">
+            View
+          </button>
+          <button class="btn btn-danger btn-sm" (click)="deleteResult(result.id)">Delete</button>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<!-- Result Modal -->
+<!--
+<div class="modal fade" id="resultModal" tabindex="-1" aria-labelledby="resultModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="resultModalLabel">Student Result Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+-->
+<!-- Bootstrap-styled Modal -->
+<div *ngIf="ModalOpen()" class="modal fade show d-block" tabindex="-1" style="background-color: rgba(0,0,0,0.5);">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header justify-content-center">
+        <h3 class="modal-title text-center w-100">Result Details</h3>
+        <button type="button" class="btn-close position-absolute end-0 me-3" (click)="ModalOpen.set(false)"></button>
+      </div>
+
+
+      <!-- Body -->
+      <div class="modal-body" *ngIf="selectedResult">
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped   align-middle  mx-auto">
+            <tbody>
+            <tr>
+              <th scope="row">Name</th>
+              <td>{{ selectedResult.studentName }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Matric Number</th>
+              <td>{{ selectedResult.matricNumber }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Department</th>
+              <td>{{ selectedResult.department }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Level</th>
+              <td>{{ selectedResult.level }}</td>
+            </tr>
+            <tr>
+              <th scope="row">GPA</th>
+              <td>{{ selectedResult.gpa }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Comment</th>
+              <td>{{ selectedResult.comment || 'None' }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Uploaded</th>
+              <td>{{ formatDate(selectedResult.createdAt) }}</td>
+            </tr>
+            <tr>
+              <td colspan="2" class="text-center">
+                <button class="btn btn-primary" (click)="goToView(selectedResult.id)">View Result</button>
+              </td>
+            </tr>
+
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Footer -->
+
+    </div>
+  </div>
+</div>

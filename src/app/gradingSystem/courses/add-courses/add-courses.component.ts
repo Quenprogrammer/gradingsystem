@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {NgIf} from '@angular/common';
 import {addDoc, collection, Firestore} from '@angular/fire/firestore';
+import { CommonModule } from '@angular/common';
+
 export interface Course {
   id?: string; // <-- Add this line
   title: string;
@@ -17,7 +19,7 @@ export interface Course {
   selector: 'app-add-courses',
   imports: [
     ReactiveFormsModule,
-    NgIf
+    CommonModule
   ],
   templateUrl: './add-courses.component.html',
   styleUrl: './add-courses.component.css'

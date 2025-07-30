@@ -1,0 +1,33 @@
+<div class="table-responsive" style="height: 100vh">
+  <table class="table table-bordered table-hover align-middle text-nowrap">
+    <thead class="table-dark">
+    <tr>
+      <th class="text-white">#</th>
+      <th class="text-white">Name</th>
+      <th class="text-white">Matric Number</th>
+      <th class="text-white">Department</th>
+      <th class="text-white">Level</th>
+      <th class="text-white">GPA</th>
+      <th class="text-white">Uploaded Date</th>
+      <th class="text-white">Action</th>
+    </tr>
+    </thead>
+
+    <tbody >
+    <tr *ngFor="let result of results$ | async; index as i">
+      <th>{{ i + 1 }}</th>
+      <td>{{ result.studentName || 'Not specified' }}</td>
+      <td>{{ result.matricNumber || 'Not specified' }}</td>
+      <td>{{ result.department || 'Not specified' }}</td>
+      <td>{{ result.level || 'Not specified' }}</td>
+      <td>{{ result.gpa || 0 }}</td>
+      <td>{{ formatDate(result.createdAt) }}</td>
+      <div class="d-flex flex-column flex-md-row gap-2">
+        <button class="btn btn-sm btn-primary w-100 w-md-auto" (click)="viewResult(result)">View</button>
+        <button class="btn btn-sm btn-danger w-100 w-md-auto" (click)="deleteResult(result.id)">Delete</button>
+      </div>
+
+    </tr>
+    </tbody>
+  </table>
+</div>
