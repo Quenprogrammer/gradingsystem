@@ -19,20 +19,8 @@
   <tbody>
   <tr *ngFor="let student of students$ | async">
     <ng-container *ngIf="editingId !== student.id; else editRow">
-      <td>{{ student.fullName }}</td>
-      <td>{{ student.matricNumber }}</td>
-      <td>{{ student.email }}</td>
-      <td>{{ student.phone }}</td>
-      <td>{{ student.gender }}</td>
-      <td>{{ student.dob }}</td>
-      <td>{{ student.department }}</td>
-      <td>{{ student.level }}</td>
-      <td>{{ student.course }}</td>
-      <td>{{ student.address || 'N/A' }}</td>
-      <td>
-        {{ student.guardianName || 'N/A' }}<br>
-        {{ student.guardianPhone || 'N/A' }}
-      </td>
+
+
       <td class="text-nowrap text-center">
         <button class="btn btn-sm btn-outline-primary me-1" (click)="startEdit(student)">Edit</button>
         <button class="btn btn-sm btn-outline-danger" (click)="deleteStudent(student.id!)">Delete</button>

@@ -1,10 +1,11 @@
-import {Component, inject} from '@angular/core';
-import {NgForOf} from '@angular/common';
-import {doc, Firestore, getDoc} from '@angular/fire/firestore';
-import {ActivatedRoute} from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { NgForOf } from '@angular/common';
+import { collection, Firestore, getDocs, query, where } from '@angular/fire/firestore';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-result-view',
+  standalone: true,
   imports: [
     NgForOf
   ],
@@ -13,20 +14,42 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class ResultView {
 
+  private firestore = inject(Firestore);
+  private route = inject(ActivatedRoute);
 
-  route = inject(ActivatedRoute);
-  firestore = inject(Firestore);
   result: any = null;
 
   async ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id) {
-      const docRef = doc(this.firestore, 'results', id);
-      const snapshot = await getDoc(docRef);
-      if (snapshot.exists()) {
-        this.result = snapshot.data();
+    const nameParam = this.route.snapshot.paramMap.get('name');
+    if (nameParam) {
+      const decodedName = decodeURIComponent(nameParam);
+      const resultsRef = collection(this.firestore, 'results');
+      const q = query(resultsRef, where('studentName', '==', decodedName));
+      const querySnapshot = await getDocs(q);
+
+      if (!querySnapshot.empty) {
+        const docSnap = querySnapshot.docs[0]; // get the first match
+        this.result = { id: docSnap.id, ...docSnap.data() };
       }
     }
+  }
+
+  formatDate(timestamp: any): string {
+    if (!timestamp) return 'N/A';
+
+    let date: Date;
+    if (timestamp.toDate) {
+      date = timestamp.toDate();
+    } else if (typeof timestamp === 'string' || timestamp instanceof Date) {
+      date = new Date(timestamp);
+    } else {
+      return 'Invalid date';
+    }
+
+    return new Intl.DateTimeFormat('en-US', {
+      year: 'numeric', month: 'short', day: '2-digit',
+      hour: '2-digit', minute: '2-digit', hour12: true
+    }).format(date);
   }
 
   print() {

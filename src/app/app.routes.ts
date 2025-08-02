@@ -10,7 +10,9 @@ export const routes: Routes = [
     {path: 'dashboard', loadComponent: () => import('../app/gradingSystem/grading-dashboard/grading-dashboard.component').then(_ => _.GradingDashboardComponent)},
   {path: 'results', loadComponent: () => import('../app/gradingSystem/results/results').then(_ => _.Results)},
   {path: 'debug', loadComponent: () => import('../app/gradingSystem/debug/debug').then(_ => _.Debug)},
-  {path: 'view-result/:id', loadComponent: () => import('../app/gradingSystem/result-view/result-view').then(_ => _.ResultView)},
+  {path: 'login', loadComponent: () => import('../app/gradingSystem/grading-system-login/grading-system-login.component').then(_ => _.GradingSystemLoginComponent)},
+  {path: 'view-result/:name', loadComponent: () => import('../app/gradingSystem/result-view/result-view').then(_ => _.ResultView)},
+  {path: '**', loadComponent: () => import('../app/gradingSystem/invalid-page/invalid-page').then(_ => _.InvalidPage)},
 
 
 

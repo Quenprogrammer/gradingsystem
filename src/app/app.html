@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark w-100">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Dashboard</a>
+    <a class="navbar-brand" routerLink="/dashboard">Dashboard</a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain"
             aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
@@ -8,30 +8,29 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarMain">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <div class="row justify-content-between">
+        <div class="col-md-6 text-end">
+          d
+         <!-- <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Students</a>
+          <a class="nav-link active" aria-current="page" routerLink="/students">Students</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Courses</a>
+          <a class="nav-link"  routerLink="/courses">Courses</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Results</a>
+          <a class="nav-link" routerLink="/results">Results</a>
         </li>
-      </ul>
+      </ul>-->
+      </div>
+        <div class="col-md-6 text-end">
+e
+        </div>
+      </div>
 
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-            <i class="bi bi-person-plus"></i> Sign Up
-          </a>
-        </li>
-        <li class="nav-item">
-          <button class="btn btn-danger" (click)="logout()">Logout</button>
 
-        </li>
-      </ul>
     </div>
   </div>
 </nav>
+
 <router-outlet></router-outlet>

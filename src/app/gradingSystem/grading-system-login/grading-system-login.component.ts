@@ -2,12 +2,14 @@ import { Component } from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {NgIf} from '@angular/common';
+import {Exampro} from '../grading-dashboard/exampro/exampro';
 
 @Component({
   selector: 'app-grading-system-login',
   imports: [
     ReactiveFormsModule,
-    NgIf
+    NgIf,
+    Exampro
   ],
   templateUrl: './grading-system-login.component.html',
   styleUrl: './grading-system-login.component.css'

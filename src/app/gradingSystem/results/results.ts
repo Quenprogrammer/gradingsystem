@@ -16,21 +16,16 @@ import {Router} from '@angular/router';
 export class Results {
   firestore = inject(Firestore);
   results$: Observable<any[]>;
-  ModalOpen:WritableSignal<boolean> = signal<boolean>(false);
-  // ✅ Added this:
+  ModalOpen: WritableSignal<boolean> = signal<boolean>(false);
   selectedResult: any = null;
 
   constructor(private router: Router) {
-
     const resultsRef = collection(this.firestore, 'results');
     this.results$ = collectionData(resultsRef, { idField: 'id' });
   }
 
-  // ✅ Modified only this method
   viewResult(result: any) {
-    this.ModalOpen.set(true)
-    this.selectedResult = result;
-    // Removed alert and console.log
+    this.router.navigate(['/view-result', encodeURIComponent(result.studentName)]);
   }
 
   async deleteResult(id: string) {
@@ -44,7 +39,6 @@ export class Results {
 
   formatDate(timestamp: any): string {
     if (!timestamp) return 'N/A';
-
     let date: Date;
 
     if (timestamp.toDate) {
@@ -66,5 +60,4 @@ export class Results {
 
     return new Intl.DateTimeFormat('en-US', options).format(date);
   }
-
 }
