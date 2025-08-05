@@ -4,20 +4,24 @@ import {collection, doc, Firestore, getCountFromServer, getDoc} from '@angular/f
 import {DashboardResults} from './dashboard-results/dashboard-results';
 import {Exampro} from './exampro/exampro';
 import {IncomeVsExpensisComponent} from './income-vs-expensis/income-vs-expensis.component';
+import {PasswordModalComponent} from '../password-modal/password-modal.component';
+import {NgIf} from '@angular/common';
+import {HeaderTag} from '../header-tag/header-tag';
 
 @Component({
   selector: 'app-grading-dashboard',
   imports: [
     DashboardResults,
     Exampro,
-    IncomeVsExpensisComponent
+    IncomeVsExpensisComponent,
+    PasswordModalComponent,
+    NgIf,
+    HeaderTag
   ],
   templateUrl: './grading-dashboard.component.html',
   styleUrl: './grading-dashboard.component.css'
 })
 export class GradingDashboardComponent implements OnInit {
-
-
 
   statisticsDashboard=[
     {name:'Students', value:3, details:'Registered students'},
@@ -69,6 +73,15 @@ export class GradingDashboardComponent implements OnInit {
     const col = collection(this.firestore, collectionName);
     const snapshot = await getCountFromServer(col);
     signalVar.set(snapshot.data().count);
+  }
+  totalStudents(): number {
+    const s = this.stats();
+    return (s?.level100 || 0) + (s?.level200 || 0) + (s?.level300 || 0) + (s?.level400 || 0);
+  }
+
+  getLevelPercent(level: number): number {
+    const total = this.totalStudents();
+    return total > 0 ? Math.round((level / total) * 100) : 0;
   }
 
 }

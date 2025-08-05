@@ -1,49 +1,51 @@
 
 
 <div class="container-fluid" style="background-color: #ffffff">
-  <app-exampro></app-exampro>
+  <app-header-tag></app-header-tag>
+
+
   <div class="row mt-1">
 
 
-    <div class="col-6 col-md-3 my-2 col-lg-2">
+    <div class="col-6 col-md-3 my-2 ">
       <!-- Card -->
       <div class="card shadow-lg border-0" >
         <div class="card-body">
           <span class="card-subtitle">Students</span>
-          <h2 class="card-title">{{ studentCount() }}</h2>
+          <h2 class="card-title display-4">{{ studentCount() }}</h2>
           <p class="card-text"></p>
         </div>
       </div>
 
     </div>
-    <div class="col-6 col-md-3 my-2 col-lg-2">
+    <div class="col-6 col-md-3 my-2 ">
       <!-- Card -->
       <div class="card shadow-lg border-0" >
         <div class="card-body">
           <span class="card-subtitle">Results</span>
-          <h2 class="card-title">{{ resultCount() }}</h2>
+          <h2 class="card-title display-4">{{ resultCount() }}</h2>
           <p class="card-text"></p>
         </div>
       </div>
 
     </div>
-    <div class="col-6 col-md-3 my-2 col-lg-2">
+    <div class="col-6 col-md-3 my-2 ">
       <!-- Card -->
       <div class="card shadow-lg border-0" >
         <div class="card-body">
           <span class="card-subtitle">Courses</span>
-          <h2 class="card-title">{{ courseCount() }}</h2>
+          <h2 class="card-title display-4">{{ courseCount() }}</h2>
           <p class="card-text"></p>
         </div>
       </div>
 
     </div>
-    <div class="col-6 col-md-3 my-2 col-lg-2">
+    <div class="col-6 col-md-3 my-2 ">
       <!-- Card -->
       <div class="card shadow-lg border-0" >
         <div class="card-body">
           <span class="card-subtitle">Result checks</span>
-          <h2 class="card-title">{{ studentCount() }}</h2>
+          <h2 class="card-title display-4">{{ studentCount() }}</h2>
           <p class="card-text"></p>
         </div>
       </div>
@@ -69,114 +71,122 @@
 
         <!-- Body -->
         <div class="card-body">
-          <div class="row g-1">
-
-            <div class="col-6 col-sm-6 my-2 col-lg-3">
-              <!-- Card -->
-              <div class="card shadow-lg border-0" >
-                <div class="card-body">
-
-                  <span class="card-subtitle">Level 100</span>
-                  <h2 class="card-title">{{ stats()?.level100 }}</h2>
-                  <p class="card-text"></p>
-                </div>
+          <div class="row">
+            <!-- Level 1 -->
+            <div class="col-md-6 col-lg-3 mb-3">
+              <div class="card text-center shadow-sm p-3">
+                <h5 class="card-title">Level 1</h5>
+                <h2 class="card-text">{{ stats()?.level100 || 0 }}</h2>
               </div>
-
-            </div>
-            <div class="col-6 col-sm-6 my-2 col-lg-3">
-              <!-- Card -->
-              <div class="card shadow-lg border-0" >
-                <div class="card-body">
-
-                  <span class="card-subtitle">Level 200</span>
-                  <h2 class="card-title">{{ stats()?.level200 }}</h2>
-                  <p class="card-text"></p>
-                </div>
-              </div>
-
-            </div>
-            <div class="col-6 col-sm-6 my-2 col-lg-3">
-              <!-- Card -->
-              <div class="card shadow-lg border-0" >
-                <div class="card-body">
-
-                  <span class="card-subtitle">Level 300</span>
-                  <h2 class="card-title">{{ stats()?.level300 }}</h2>
-                  <p class="card-text"></p>
-                </div>
-              </div>
-
-            </div>
-            <div class="col-6 col-sm-6 my-2 col-lg-3">
-              <!-- Card -->
-              <div class="card shadow-lg border-0" >
-                <div class="card-body">
-
-                  <span class="card-subtitle">Level 400</span>
-                  <h2 class="card-title">{{ stats()?.level400 }}</h2>
-                  <p class="card-text"></p>
-                </div>
-              </div>
-
             </div>
 
+            <!-- Level 2 -->
+            <div class="col-md-6 col-lg-3 mb-3">
+              <div class="card text-center shadow-sm p-3">
+                <h5 class="card-title">Level 2</h5>
+                <h2 class="card-text">{{ stats()?.level200 || 0 }}</h2>
+              </div>
+            </div>
 
+            <!-- Level 3 -->
+            <div class="col-md-6 col-lg-3 mb-3">
+              <div class="card text-center shadow-sm p-3">
+                <h5 class="card-title">Level 3</h5>
+                <h2 class="card-text">{{ stats()?.level300 || 0 }}</h2>
+              </div>
+            </div>
+
+            <!-- Level 4 -->
+            <div class="col-md-6 col-lg-3 mb-3">
+              <div class="card text-center shadow-sm p-3">
+                <h5 class="card-title">Level 4</h5>
+                <h2 class="card-text">{{ stats()?.level400 || 0 }}</h2>
+              </div>
+            </div>
           </div>
+
           <div class="col mb-3 mt-3">
 
             <div class=" card-sm  border-1 shadow-none h-100 mb-1">
-              <h4 class="text-center mt-4 mb-1">Academic Performance</h4>
+
               <div class="card-body">
-                <div >
-                  <div class="card--footer mb-1 pt-2">
-                    <div class="row justify-content-between">
-                      <div class="col-6"><h4 class="card--subtitle">Level 1</h4></div>
-                      <div class="col-6">      <h4 class="card--subtitle text-end">43%</h4></div>
-                    </div>
-
-
-
-                    <div class="progress" style="height: 8px;">
-                      <div class="progress-bar bg-success" role="progressbar" style="width: 43%" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100"></div>
+                <!-- LEVEL 1 -->
+                <div class="card--footer mb-1 pt-2">
+                  <div class="row justify-content-between">
+                    <div class="col-6"><h4 class="card--subtitle">Level 1</h4></div>
+                    <div class="col-6 text-end text-muted small">
+                      {{ getLevelPercent(stats()?.level100) }}%
                     </div>
                   </div>
-                  <div class="card--footer mb-1 pt-2">
-                    <div class="row justify-content-between">
-                      <div class="col-6"><h4 class="card--subtitle">Level 2</h4></div>
-                      <div class="col-6">      <h4 class="card--subtitle text-end">43%</h4></div>
-                    </div>
-
-
-
-                    <div class="progress" style="height: 8px;">
-                      <div class="progress-bar bg-success" role="progressbar" style="width: 43%" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </div>
-                  <div class="card--footer mb-1 pt-2">
-                    <div class="row justify-content-between">
-                      <div class="col-6"><h4 class="card--subtitle">Level 3</h4></div>
-                      <div class="col-6">      <h4 class="card--subtitle text-end">43%</h4></div>
-                    </div>
-
-
-
-                    <div class="progress" style="height: 8px;">
-                      <div class="progress-bar bg-success" role="progressbar" style="width: 43%" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </div>
-                  <div class="card--footer mb-1 pt-2">
-                    <div class="row justify-content-between">
-                      <div class="col-6"><h4 class="card--subtitle">Level 4</h4></div>
-                      <div class="col-6">      <h4 class="card--subtitle text-end">43%</h4></div>
-                    </div>
-
-
-
-                    <div class="progress" style="height: 8px;">
-                      <div class="progress-bar bg-success" role="progressbar" style="width: 43%" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100"></div>
+                  <div class="progress" style="height: 8px;">
+                    <div class="progress-bar bg-success"
+                         role="progressbar"
+                         [style.width.%]="getLevelPercent(stats()?.level100)"
+                         [attr.aria-valuenow]="getLevelPercent(stats()?.level100)"
+                         aria-valuemin="0"
+                         aria-valuemax="100">
                     </div>
                   </div>
                 </div>
+
+                <!-- LEVEL 2 -->
+                <div class="card--footer mb-1 pt-2">
+                  <div class="row justify-content-between">
+                    <div class="col-6"><h4 class="card--subtitle">Level 2</h4></div>
+                    <div class="col-6 text-end text-muted small">
+                      {{ getLevelPercent(stats()?.level200) }}%
+                    </div>
+                  </div>
+                  <div class="progress" style="height: 8px;">
+                    <div class="progress-bar bg-success"
+                         role="progressbar"
+                         [style.width.%]="getLevelPercent(stats()?.level200)"
+                         [attr.aria-valuenow]="getLevelPercent(stats()?.level200)"
+                         aria-valuemin="0"
+                         aria-valuemax="100">
+                    </div>
+                  </div>
+                </div>
+
+                <!-- LEVEL 3 -->
+                <div class="card--footer mb-1 pt-2">
+                  <div class="row justify-content-between">
+                    <div class="col-6"><h4 class="card--subtitle">Level 3</h4></div>
+                    <div class="col-6 text-end text-muted small">
+                      {{ getLevelPercent(stats()?.level300) }}%
+                    </div>
+                  </div>
+                  <div class="progress" style="height: 8px;">
+                    <div class="progress-bar bg-success"
+                         role="progressbar"
+                         [style.width.%]="getLevelPercent(stats()?.level300)"
+                         [attr.aria-valuenow]="getLevelPercent(stats()?.level300)"
+                         aria-valuemin="0"
+                         aria-valuemax="100">
+                    </div>
+                  </div>
+                </div>
+
+                <!-- LEVEL 4 -->
+                <div class="card--footer mb-1 pt-2">
+                  <div class="row justify-content-between">
+                    <div class="col-6"><h4 class="card--subtitle">Level 4</h4></div>
+                    <div class="col-6 text-end text-muted small">
+                      {{ getLevelPercent(stats()?.level400) }}%
+                    </div>
+                  </div>
+                  <div class="progress" style="height: 8px;">
+                    <div class="progress-bar bg-success"
+                         role="progressbar"
+                         [style.width.%]="getLevelPercent(stats()?.level400)"
+                         [attr.aria-valuenow]="getLevelPercent(stats()?.level400)"
+                         aria-valuemin="0"
+                         aria-valuemax="100">
+                    </div>
+                  </div>
+                </div>
+
+
 
               </div>
 
@@ -222,3 +232,4 @@
   </div>
 
 </div>
+

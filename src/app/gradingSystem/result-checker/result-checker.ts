@@ -1,31 +1,58 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
-import {Router} from '@angular/router';
-import {FormsModule} from '@angular/forms';
-import {Exampro} from '../grading-dashboard/exampro/exampro';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { collection, Firestore, getDocs, query, where } from '@angular/fire/firestore';
+import { CommonModule } from '@angular/common';
+import {HeaderTag} from '../header-tag/header-tag';
 
 @Component({
   selector: 'app-result-checker',
-  imports: [
-    FormsModule,
-    Exampro
-  ],
+  standalone: true,
+  imports: [ReactiveFormsModule, CommonModule, HeaderTag],
   templateUrl: './result-checker.html',
-  styleUrl: './result-checker.scss'
 })
 export class ResultChecker {
-  @ViewChild('targetElement') targetElement!: ElementRef;
+  form: FormGroup;
+  studentResult: any = null;
+  notFound: boolean = false;
+  loading: boolean = false;
 
-  scrollToElement() {
-    this.targetElement.nativeElement.scrollIntoView({ behavior: 'smooth' });
+  constructor(private fb: FormBuilder, private firestore: Firestore) {
+    this.form = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      matric: ['', Validators.required],
+    });
   }
-  searchQuery: string = '';  // Bind to input
 
-  constructor(private router: Router) {}
+  async onSubmit() {
+    if (this.form.invalid) return;
 
-  onSearch() {
-    if (this.searchQuery) {
-      // Navigate to the certificate verification page, passing the search query
-      this.router.navigate(['/certificate-view'], { queryParams: { name: this.searchQuery } });
+    this.loading = true;
+    this.studentResult = null;
+    this.notFound = false;
+
+    const email = this.form.value.email.trim().toLowerCase();
+    const matric = this.form.value.matric.trim().toUpperCase();
+
+    try {
+      const resultsRef = collection(this.firestore, 'results');
+      const q = query(resultsRef,
+        where('email', '==', email),
+        where('matricNumber', '==', matric)
+      );
+
+      const snapshot = await getDocs(q);
+
+      if (!snapshot.empty) {
+        this.studentResult = snapshot.docs[0].data();
+      } else {
+        this.notFound = true;
+      }
+
+    } catch (error) {
+      console.error('Error fetching result:', error);
+      this.notFound = true;
     }
+
+    this.loading = false;
   }
 }

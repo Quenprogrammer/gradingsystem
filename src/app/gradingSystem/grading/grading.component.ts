@@ -13,6 +13,7 @@ import {
   updateDoc
 } from '@angular/fire/firestore';
 import { increment } from 'firebase/firestore';
+import {HeaderTag} from '../header-tag/header-tag';
 
 @Component({
   selector: 'app-grading',
@@ -21,7 +22,8 @@ import { increment } from 'firebase/firestore';
     ReactiveFormsModule,
     NgForOf,
     NgIf,
-    AsyncPipe
+    AsyncPipe,
+    HeaderTag
   ],
   templateUrl: './grading.component.html',
   styleUrl: '../courses/view-courses/view-courses.component.css'

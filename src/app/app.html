@@ -1,36 +1,62 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark w-100">
-  <div class="container-fluid">
-    <a class="navbar-brand" routerLink="/dashboard">Dashboard</a>
+<!--
+<app-password-modal *ngIf="!accessGranted" (unlocked)="onUnlock($event)"></app-password-modal>
+<div *ngIf="accessGranted">
+-->
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain"
-            aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+
+
+
+    <!-- Angular-controlled toggle -->
+    <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarMain">
-      <div class="row justify-content-between">
-        <div class="col-md-6 text-end">
-          d
-         <!-- <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="/students">Students</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link"  routerLink="/courses">Courses</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/results">Results</a>
-        </li>
-      </ul>-->
-      </div>
-        <div class="col-md-6 text-end">
-e
-        </div>
-      </div>
+    <!-- Toggle visibility with *ngIf -->
+    <div class="collapse navbar-collapse" [ngClass]="{ 'show': isNavbarCollapsed }" id="navbarNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/gradingSystem">Add Result</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/courses">View Courses</a>
+        </li>
 
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/addCourses">Add Courses</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/students">Students</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/addStudents">Add Students</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/gradingSystem">Add Result</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/ACAD/resultChecker">Result Checker</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/view-result">View Result</a>
+        </li>
+
+      </ul>
     </div>
   </div>
 </nav>
 
+
+
 <router-outlet></router-outlet>
+

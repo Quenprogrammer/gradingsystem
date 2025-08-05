@@ -38,79 +38,80 @@
     </tbody>
   </table>
 </div>
-<!-- Result Modal -->
-<!--
-<div class="modal fade" id="resultModal" tabindex="-1" aria-labelledby="resultModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="resultModalLabel">Student Result Details</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
 
-
-
-      <div class="modal-footer">
-        <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
--->
-<!-- Bootstrap-styled Modal -->
 <div *ngIf="ModalOpen()" class="modal fade show d-block" tabindex="-1" style="background-color: rgba(0,0,0,0.5);">
   <div class="modal-dialog modal-dialog-scrollable modal-lg">
     <div class="modal-content">
 
       <div class="modal-header justify-content-center">
-        <h3 class="modal-title text-center w-100">Result Details</h3>
+
         <button type="button" class="btn-close position-absolute end-0 me-3" (click)="ModalOpen.set(false)"></button>
       </div>
 
 
       <!-- Body -->
-      <div class="modal-body" *ngIf="selectedResult">
-        <div class="table-responsive">
-          <table class="table table-bordered table-striped   align-middle  mx-auto">
-            <tbody>
-            <tr>
-              <th scope="row">Name</th>
-              <td>{{ selectedResult.studentName }}</td>
-            </tr>
-            <tr>
-              <th scope="row">Matric Number</th>
-              <td>{{ selectedResult.matricNumber }}</td>
-            </tr>
-            <tr>
-              <th scope="row">Department</th>
-              <td>{{ selectedResult.department }}</td>
-            </tr>
-            <tr>
-              <th scope="row">Level</th>
-              <td>{{ selectedResult.level }}</td>
-            </tr>
-            <tr>
-              <th scope="row">GPA</th>
-              <td>{{ selectedResult.gpa }}</td>
-            </tr>
-            <tr>
-              <th scope="row">Comment</th>
-              <td>{{ selectedResult.comment || 'None' }}</td>
-            </tr>
-            <tr>
-              <th scope="row">Uploaded</th>
-              <td>{{ formatDate(selectedResult.createdAt) }}</td>
-            </tr>
-            <tr>
-              <td colspan="2" class="text-center">
-                <button class="btn btn-primary" (click)="goToView(selectedResult.id)">View Result</button>
-              </td>
-            </tr>
+      <div class="modal-boudy" *ngIf="selectedResult">
+        <div class="a4-page mx-auto my-5 shadow p-5 bg-white" #printSection>
+
+          <div class="text-center mb-4">
+            <h2>Student Result Sheet</h2>
+            <p class="text-muted">Semester Academic Report</p>
+          </div>
+
+          <div class="border-0 p-4 rounded shadow-none bg-white " >
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <strong>Name: {{ selectedResult.studentName }}</strong>
+              </div>
+              <div class="col-md-6">
+                <strong>Level: {{ selectedResult.level }}</strong>
+              </div>
+              <div class="col-md-6">
+                <strong>Matric Number: {{ selectedResult.matricNumber }}</strong>
+              </div>
+              <div class="col-md-6">
+                <strong>Department: {{ selectedResult.department }}</strong>
+              </div>
+            </div>
+
+            <h5 class="mt-4">Courses</h5>
+            <table class="table table-bordered table-sm" >
+              <thead class="table-dark">
+              <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Code</th>
+                <th>Credit Unit</th>
+                <th>Score</th>
+                <th>Grade</th>
+              </tr>
+              </thead>
+              <tbody>
+
+              </tbody>
+            </table>
+
+            <div class="mt-3">
+              <strong>GPA: {{ selectedResult.gpa }}</strong>
+            </div>
+
+            <div class="mt-3">
+              <strong>Comment: {{ selectedResult.comment || 'None' }}</strong>
+
+            </div>
+            <div class="mt-3">
+              <strong>uploadedAt: {{ formatDate(selectedResult.createdAt) }}</strong>
+
+            </div>
 
 
-            </tbody>
-          </table>
+          </div>
+          <div class="text-end mt-4">
+            <button class="btn btn-primary"  >Print Result</button>
+          </div>
         </div>
+
+
       </div>
 
       <!-- Footer -->

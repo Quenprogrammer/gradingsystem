@@ -20,7 +20,7 @@ import {Router} from '@angular/router';
     ReactiveFormsModule
   ],
   templateUrl: './dashboard-results.html',
-  styleUrl: '../../courses/view-courses/view-courses.component.css'
+  styleUrl: './dashboard-results.scss'
 })
 export class DashboardResults {
   firestore = inject(Firestore);

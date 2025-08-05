@@ -1,18 +1,23 @@
-<div class=" shadow-none border-0">
 
+<div class="shadow-none border-0">
+  <!-- Chart Legend -->
   <ul class="chart-legend list-unstyled d-flex justify-content-center mt-1">
     <li class="me-3">
-      <span class="legend-box bg-black me-1"></span> Income
+      <span class="legend-box bg-black me-1 d-inline-block" style="width: 12px; height: 12px;" ></span> Pass
     </li>
     <li class="me-3">
-      <span class="legend-box bg-danger me-1"></span> Expenses
+      <span class="legend-box bg-danger me-1 d-inline-block" style="width: 12px; height: 12px;"></span> Fail
     </li>
-
   </ul>
-  <div class="car d-body text-center  ">
 
+  <!-- Chart Container -->
+  <div class="card-body text-center">
     <canvas #pieCanvas width="400" height="350" class="mb-1 d-block mx-auto"></canvas>
-
-
   </div>
+<div class="row">
+  <div class="col-6">  <h3 class="text-center"> Total Failed Students{{ failCount() }}</h3></div>
+  <div class="col-6"><h3 class="text-center"> Total Passed Students{{ passCount() }}</h3></div>
+</div>
+
+
 </div>
