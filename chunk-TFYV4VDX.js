@@ -1,1 +1,0 @@
-import{Ca as n,Xa as t,Ya as r,ib as a}from"./chunk-KAR7Y5NO.js";var m=class o{static \u0275fac=function(e){return new(e||o)};static \u0275cmp=n({type:o,selectors:[["app-exampro"]],decls:4,vars:0,consts:[[1,"display-3"],[2,"color","red"]],template:function(e,s){e&1&&(t(0,"h1",0),a(1,"Exam "),t(2,"span",1),a(3,"pro"),r()())},encapsulation:2})};export{m as a};
